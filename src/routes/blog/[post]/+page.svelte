@@ -4,6 +4,7 @@
   import type { Post } from "$lib/types";
 
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
 
   export let data;
 
@@ -15,6 +16,12 @@
   url.searchParams.append("desc", description);
 
   let asideToc: HTMLElement;
+  let markdownContent: HTMLElement;
+
+  let mounted: false;
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <article class="mx-auto my-24 @container max-w-[93%] md:max-w-xl xl:max-w-6xl">
@@ -33,13 +40,15 @@
   </hrgoup>
 
   <div class="flex flex-row justify-between">
-    <main class="prose lg:prose-lg w-full xl:w-3/4">
+    <main bind:this={markdownContent} class="prose lg:prose-lg w-full xl:w-3/4">
       <svelte:component this={data.content} />
     </main>
     <div class="w-0 xl:w-1/4">
-      <Toc aside={asideToc}>
-        <span slot="title" class="font-bold text-lg">Map</span>
-      </Toc>
+      {#if mounted}
+        <Toc pageBody={markdownContent} autoHide={false} aside={asideToc}>
+          <span slot="title" class="font-bold text-lg">Map</span>
+        </Toc>
+      {/if}
     </div>
   </div>
 </article>
