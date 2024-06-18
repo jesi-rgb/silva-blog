@@ -4,7 +4,6 @@ import remarkMath from "remark-math";
 import { codeToHtml } from "shiki";
 
 import remarkUnwrapImages from "remark-unwrap-images";
-import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 
 const config = defineConfig({
@@ -34,11 +33,7 @@ const config = defineConfig({
     dashes: "oldschool",
   },
 
-  remarkPlugins: [
-    remarkMath,
-    [remarkToc, { tight: true, ordered: true }],
-    remarkUnwrapImages,
-  ],
+  remarkPlugins: [remarkMath, remarkUnwrapImages],
   rehypePlugins: [rehypeKatexSvelte, rehypeSlug],
 });
 
