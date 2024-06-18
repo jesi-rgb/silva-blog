@@ -6,7 +6,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["MD System Trial"],
+                sans: ["MD System Trial", "system-ui"],
+                mono: [""],
             },
         },
     },
