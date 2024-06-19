@@ -1,8 +1,7 @@
 <script>
-  import "../app.css";
+    import '../app.css'
 </script>
 
-<slot></slot>
-
-<style></style>
-
+<main class="selection:text-primary selection:bg-primary-content">
+    <slot />
+</main>
