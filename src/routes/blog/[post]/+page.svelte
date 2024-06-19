@@ -46,14 +46,18 @@
         <div class="w-0 xl:w-1/4">
             {#if mounted}
                 <Toc
-                    --toc-active-bg="aquamarine"
                     --toc-active-font-weight="700"
                     breakpoint={1300}
                     pageBody={markdownContent}
                     autoHide={false}
                     aside={asideToc}
                 >
-                    <span slot="title" class="font-bold text-lg">Map</span>
+                    <div
+                        slot="title"
+                        class="font-bold text-lg border-b border-neutral-500/30 w-full pb-0.5 mb-3"
+                    >
+                        On this page
+                    </div>
                 </Toc>
             {/if}
         </div>
