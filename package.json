@@ -40,7 +40,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@threlte/core": "^7.3.0",
+    "@threlte/core": "next",
+    "@threlte/extras": "next",
     "@types/three": "^0.165.0",
     "three": "^0.165.0"
   }
