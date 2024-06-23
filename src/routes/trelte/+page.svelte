@@ -8,56 +8,23 @@
 
     let progress: number;
 
-    $: rotation = progress * Math.PI * 50;
-    $: duckPosition = [0, progress * 20, progress * 30];
-    $: console.log(progress);
+    let top = 0.0;
+    let threshold = 0.2;
+    let bottom = 0.9;
+
+    $: duckPosition = [progress * 10, progress * 5, 10];
+    $: rotation = progress * Math.PI;
+
+    // TODO: build an object that serves as "keyframes"
+    // for indicating where the model should go at what point
+    // maybe a mapping object -> section and interpolation
+    // methods from claude
 </script>
 
-<main class="my-20 w-3/4 mx-auto">
-    <div class="mb-32 text-xl flex flex-col gap-4">
-        <p>
-            Officia sit nulla exercitation tempor dolore proident reprehenderit
-            proident. Veniam sint veniam incididunt minim excepteur ut velit
-            quis eiusmod culpa consequat quis est elit. Ut est qui elit amet
-            eiusmod culpa esse. Dolor commodo culpa do veniam cillum amet in
-            anim. Tempor non nostrud excepteur cupidatat nisi. Culpa occaecat
-            exercitation eiusmod. Id sunt deserunt fugiat irure dolore fugiat
-            elit ullamco Lorem est exercitation dolore ad ex.
-        </p>
-
-        <p>
-            Officia sit nulla exercitation tempor dolore proident reprehenderit
-            proident. Veniam sint veniam incididunt minim excepteur ut velit
-            quis eiusmod culpa consequat quis est elit. Ut est qui elit amet
-            eiusmod culpa esse. Dolor commodo culpa do veniam cillum amet in
-            anim. Tempor non nostrud excepteur cupidatat nisi. Culpa occaecat
-            exercitation eiusmod. Id sunt deserunt fugiat irure dolore fugiat
-            elit ullamco Lorem est exercitation dolore ad ex.
-        </p>
-
-        <p>
-            Officia sit nulla exercitation tempor dolore proident reprehenderit
-            proident. Veniam sint veniam incididunt minim excepteur ut velit
-            quis eiusmod culpa consequat quis est elit. Ut est qui elit amet
-            eiusmod culpa esse. Dolor commodo culpa do veniam cillum amet in
-            anim. Tempor non nostrud excepteur cupidatat nisi. Culpa occaecat
-            exercitation eiusmod. Id sunt deserunt fugiat irure dolore fugiat
-            elit ullamco Lorem est exercitation dolore ad ex.
-        </p>
-
-        <p>
-            Officia sit nulla exercitation tempor dolore proident reprehenderit
-            proident. Veniam sint veniam incididunt minim excepteur ut velit
-            quis eiusmod culpa consequat quis est elit. Ut est qui elit amet
-            eiusmod culpa esse. Dolor commodo culpa do veniam cillum amet in
-            anim. Tempor non nostrud excepteur cupidatat nisi. Culpa occaecat
-            exercitation eiusmod. Id sunt deserunt fugiat irure dolore fugiat
-            elit ullamco Lorem est exercitation dolore ad ex.
-        </p>
-    </div>
-    <Scroller bind:progress>
-        <div slot="background" class="h-[100vh] relative">
-            <div class="w-full mx-auto h-full absolute">
+<main class="">
+    <Scroller bind:progress {top} {threshold} {bottom}>
+        <div slot="background" class="border-black border h-[100vh]">
+            <div class="w-full mx-auto h-full">
                 <Canvas>
                     <T.PerspectiveCamera
                         makeDefault
