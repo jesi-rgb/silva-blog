@@ -8,8 +8,8 @@
 
     let progress: number;
 
-    $: rotation = progress * Math.PI;
-    $: duckPosition = [0, 2 * progress, 0];
+    $: rotation = progress * Math.PI * 50;
+    $: duckPosition = [0, progress * 20, progress * 30];
     $: console.log(progress);
 </script>
 
@@ -57,7 +57,7 @@
     </div>
     <Scroller bind:progress>
         <div slot="background" class="h-[100vh] relative">
-            <div class="w-full mx-auto h-full border-2 absolute">
+            <div class="w-full mx-auto h-full absolute">
                 <Canvas>
                     <T.PerspectiveCamera
                         makeDefault
@@ -80,7 +80,7 @@
         </div>
 
         <div slot="foreground" class="w-3/4 mx-auto">
-            <section class="pt-32">
+            <section class="pt-32 h-fit">
                 <div class="font-bold text-3xl">pato</div>
                 <div>
                     asdfklasñldf jaslñkdjf añlsdkjf sldkfj saldfñajsl dfkjs
@@ -157,6 +157,6 @@
 
 <style>
     section {
-        height: 80vh;
+        height: 100vh;
     }
 </style>
