@@ -16,8 +16,8 @@ export default {
     daisyui: {
         logs: false,
         themes: [
-            { light: { ...require('daisyui/src/theming/themes')['lemonade'] } },
-            { dark: { ...require('daisyui/src/theming/themes')['forest'] } },
+            { light: { ...require('daisyui/src/theming/themes')['light'] } },
+            { dark: { ...require('daisyui/src/theming/themes')['dracula'] } },
             'cupcake'
         ]
     }

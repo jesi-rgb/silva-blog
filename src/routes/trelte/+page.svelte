@@ -1,19 +1,20 @@
 <script lang="ts">
-    import { Canvas } from "@threlte/core";
-    import { T } from "@threlte/core";
-    import Scroller from "@sveltejs/svelte-scroller";
+    import { Canvas } from '@threlte/core'
+    import { T } from '@threlte/core'
+    import Scroller from '@sveltejs/svelte-scroller'
+    import Container from '$lib/components/Container.svelte'
 
-    import { OrbitControls } from "@threlte/extras";
-    import Duck from "$lib/yellow_rubber_duck.svelte";
+    import { OrbitControls } from '@threlte/extras'
+    import Duck from '$lib/yellow_rubber_duck.svelte'
 
-    let progress: number;
+    let progress: number
 
-    let top = 0.0;
-    let threshold = 0.2;
-    let bottom = 0.9;
+    let top = 0.0
+    let threshold = 0.2
+    let bottom = 0.9
 
-    $: duckPosition = [progress * 10, progress * 5, 10];
-    $: rotation = progress * Math.PI;
+    $: duckPosition = [progress * 10, progress * 5, 10]
+    $: rotation = progress * Math.PI
 
     // TODO: build an object that serves as "keyframes"
     // for indicating where the model should go at what point
@@ -21,16 +22,16 @@
     // methods from claude
 </script>
 
-<main class="">
+<Container>
     <Scroller bind:progress {top} {threshold} {bottom}>
-        <div slot="background" class="border-black border h-[100vh]">
+        <div slot="background" class="h-[100vh]">
             <div class="w-full mx-auto h-full">
                 <Canvas>
                     <T.PerspectiveCamera
                         makeDefault
                         position={[10, 10, 10]}
                         on:create={({ ref }) => {
-                            ref.lookAt(...duckPosition);
+                            ref.lookAt(...duckPosition)
                         }}
                     >
                         <OrbitControls />
@@ -120,7 +121,7 @@
             elit ullamco Lorem est exercitation dolore ad ex.
         </p>
     </div>
-</main>
+</Container>
 
 <style>
     section {
