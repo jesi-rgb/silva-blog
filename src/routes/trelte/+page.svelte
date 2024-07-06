@@ -1,54 +1,22 @@
 <script lang="ts">
-    import { Canvas } from "@threlte/core";
-    import { onMount } from "svelte";
-    import { T } from "@threlte/core";
-    import Scroller from "@sveltejs/svelte-scroller";
-    import Container from "$lib/components/Container.svelte";
-    import { spring } from "svelte/motion";
+    import { Canvas } from '@threlte/core'
+    import { onMount } from 'svelte'
+    import { T } from '@threlte/core'
+    import Scroller from '@sveltejs/svelte-scroller'
+    import Container from '$lib/components/Container.svelte'
+    import { spring } from 'svelte/motion'
 
-    import { OrbitControls } from "@threlte/extras";
-    import Duck from "$lib/yellow_rubber_duck.svelte";
+    import Duck from '$lib/yellow_rubber_duck.svelte'
+    import Scene from './scenes/Scene.svelte'
 
-    let progress: number;
-    let count: number;
-    let index: number;
-    let offset: number;
+    let progress: number
+    let count: number
+    let index: number
+    let offset: number
 
-    let top = 0.0;
-    let threshold = 0.2;
-    let bottom = 0.9;
-
-    function interpolate(a, b, t) {
-        return {
-            x: a.x + (b.x - a.x) * t,
-            y: a.y + (b.y - a.y) * t,
-            z: a.z + (b.z - a.z) * t,
-        };
-    }
-
-    const position = spring({ x: 10, y: 5, z: 10 });
-    const rotation = spring({ x: 0, y: 0, z: 0 });
-
-    const path = [
-        { x: 0, y: 0, z: 0, rotation: { x: 0, y: 0, z: 0 } },
-        { x: 2, y: 1, z: -1, rotation: { x: 0, y: Math.PI / 4, z: 0 } },
-        {
-            x: -1,
-            y: 2,
-            z: 1,
-            rotation: { x: Math.PI / 4, y: 0, z: Math.PI / 4 },
-        },
-        { x: 0, y: 0, z: 0, rotation: { x: 0, y: Math.PI * 2, z: 0 } },
-    ];
-
-    $: duckPosition = [progress * 10, progress * 5, 10];
-
-    $: if (index < path.length - 1) {
-        rotation.set(
-            interpolate(path[index].rotation, path[index + 1].rotation, offset),
-        );
-        position.set(interpolate(path[index], path[index + 1], offset));
-    }
+    let top = 0.0
+    let threshold = 0.2
+    let bottom = 0.9
 </script>
 
 <Container>
@@ -61,35 +29,55 @@
         {threshold}
         {bottom}
     >
-        <div slot="background" class="h-[100vh]">
-            <div class="w-full mx-auto h-full">
+        <div slot="background" class="h-[100vh] border">
+            <div class="w-full h-full">
                 <Canvas>
-                    <T.PerspectiveCamera
-                        makeDefault
-                        position={[10, 10, 10]}
-                        on:create={({ ref }) => {
-                            ref.lookAt($position);
-                        }}
-                    >
-                        <OrbitControls />
-                    </T.PerspectiveCamera>
-                    <T.Group
-                        position={$position}
-                        rotation={$rotation}
-                        scale={[2, 2, 2]}
-                    >
-                        <Duck />
-                    </T.Group>
+                    <Scene {progress} {count} {offset} {index} />
                 </Canvas>
             </div>
         </div>
 
         <div slot="foreground" class="w-3/4 mx-auto">
-            <section class="pt-32 h-fit">
-                <div class="font-bold text-3xl">pato</div>
-                <div>
-                    asdfklasñldf jaslñkdjf añlsdkjf sldkfj saldfñajsl dfkjs
-                    ldfkjsldkf jsldfkj
+            <section class="pt-32 border border-red-400">
+                <div class="text-3xl font-bold">section 1: lol</div>
+
+                <div class="flex flex-col gap-8">
+                    <p>
+                        Aliqua consequat proident et commodo fugiat elit ullamco
+                        consectetur qui eu aliquip. Exercitation minim aliquip
+                        minim nulla dolore et quis officia amet aliquip pariatur
+                        labore esse do. Elit excepteur proident dolor nisi
+                        consectetur deserunt dolore aliqua laborum do. Qui et
+                        laborum culpa eiusmod quis culpa eu id aute cupidatat
+                        aliqua nostrud cillum consequat cillum.
+                    </p>
+                    <p>
+                        Aliqua consequat proident et commodo fugiat elit ullamco
+                        consectetur qui eu aliquip. Exercitation minim aliquip
+                        minim nulla dolore et quis officia amet aliquip pariatur
+                        labore esse do. Elit excepteur proident dolor nisi
+                        consectetur deserunt dolore aliqua laborum do. Qui et
+                        laborum culpa eiusmod quis culpa eu id aute cupidatat
+                        aliqua nostrud cillum consequat cillum.
+                    </p>
+                    <p>
+                        Aliqua consequat proident et commodo fugiat elit ullamco
+                        consectetur qui eu aliquip. Exercitation minim aliquip
+                        minim nulla dolore et quis officia amet aliquip pariatur
+                        labore esse do. Elit excepteur proident dolor nisi
+                        consectetur deserunt dolore aliqua laborum do. Qui et
+                        laborum culpa eiusmod quis culpa eu id aute cupidatat
+                        aliqua nostrud cillum consequat cillum.
+                    </p>
+                    <p>
+                        Aliqua consequat proident et commodo fugiat elit ullamco
+                        consectetur qui eu aliquip. Exercitation minim aliquip
+                        minim nulla dolore et quis officia amet aliquip pariatur
+                        labore esse do. Elit excepteur proident dolor nisi
+                        consectetur deserunt dolore aliqua laborum do. Qui et
+                        laborum culpa eiusmod quis culpa eu id aute cupidatat
+                        aliqua nostrud cillum consequat cillum.
+                    </p>
                 </div>
             </section>
 
@@ -162,6 +150,6 @@
 
 <style>
     section {
-        height: 100vh;
+        height: 250vh;
     }
 </style>
